@@ -1,29 +1,33 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Bus } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const AvailableBuses = () => {
+const AvailableBuses = ({ buses }) => {
   const navigation = useNavigation();
 
   return (
     <View>
       <Text style={styles.sectionTitle}>Available Buses</Text>
-      <View style={styles.busOptionsContainer}>
-        {[1, 2, 3].map((item) => (
-          <TouchableOpacity
-            key={item}
-            style={styles.busOption}
-            onPress={() => navigation.navigate('BusDetails', { busNumber: item })}
-          >
-            <View style={styles.busIconContainer}>
-              <Bus size={30} color="#fff" />
-            </View>
-            <Text style={styles.busText}>Bus {item}</Text>
-            <Text style={styles.busSubText}>$20 • 30 min</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <View style={styles.busOptionsContainer}>
+          {buses.length > 0 ? buses.map((bus, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.busOption}
+              onPress={() => navigation.navigate('BusDetails', { busNumber: bus.busNumber })}
+            >
+              <View style={styles.busIconContainer}>
+                <Bus size={30} color="#fff" />
+              </View>
+              <Text style={styles.busText}>Bus {bus.busNumber}</Text>
+              
+            </TouchableOpacity>
+          )) : (
+            <Text style={styles.noBusesText}>No buses available</Text>
+          )}
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -37,15 +41,17 @@ const styles = StyleSheet.create({
   },
   busOptionsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20,
+    flexWrap: 'nowrap', // Ensure no wrapping
+    alignItems: 'center',
   },
   busOption: {
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.1)',
     borderRadius: 10,
     padding: 12,
-    width: '30%',
+    width: 100, // Adjust width as needed
+    marginRight: 10, // Add space between items
+    marginBottom:15
   },
   busIconContainer: {
     width: 60,
@@ -64,6 +70,11 @@ const styles = StyleSheet.create({
   busSubText: {
     color: '#ccc',
     fontSize: 12,
+  },
+  noBusesText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 

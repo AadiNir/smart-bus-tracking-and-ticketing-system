@@ -14,9 +14,9 @@ const Stack = createStackNavigator();
 
 const busInfo = {
   'boAt Rockerz 255 Pro+-GFP': {
-    busNumber: '123',
-    from: 'City Center',
-    to: 'Main Station',
+    busNumber: '24A',
+    from: 'V House',
+    to: 'Anna Nagar West',
   },
 };
 
