@@ -35,7 +35,7 @@ const App = () => {
           subscription.remove();  // Remove listener once Bluetooth is powered on
           requestPermissions().then((granted) => {
             if (granted) {
-              console.log('Permissions granted, starting scan...');
+              console.log(' granPermissionsted, starting scan...');
               startBackgroundScanning();  // Start scanning
             } else {
               console.log('Permissions not granted');
@@ -124,7 +124,7 @@ const App = () => {
       name: 'Default Channel',
     });
   
-    console.log('Triggering notification for bus:', bus);
+    console.log('Triggering notification for bus id:', bus);
   
     // Triggering text-to-speech
     const speechText = `Bus ${bus.busNumber} from ${bus.from} to ${bus.to} is nearby.`;

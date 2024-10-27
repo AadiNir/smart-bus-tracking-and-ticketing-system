@@ -1,24 +1,32 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const RecentTrips = () => (
-  <View>
-    <Text style={styles.sectionTitle}>Recent Trips</Text>
-    <View style={styles.recentTripsContainer}>
-      {[1, 2].map((item) => (
-        <View key={item} style={styles.recentTrip}>
-          <View>
-            <Text style={styles.recentTripRoute}>Route A to B</Text>
-            <Text style={styles.recentTripDate}>May {item}, 2024</Text>
+const RecentTrips = () => {
+  // Function to handle button press
+  const handlePress = () => {
+    console.log('Book Again pressed!');
+    // Add your desired functionality here
+  };
+
+  return (
+    <View>
+      <Text style={styles.sectionTitle}>Recent Trips</Text>
+      <View style={styles.recentTripsContainer}>
+        {[1, 2].map((item) => (
+          <View key={item} style={styles.recentTrip}>
+            <View>
+              <Text style={styles.recentTripRoute}>Route A to B</Text>
+              <Text style={styles.recentTripDate}>May {item}, 2024</Text>
+            </View>
+            <TouchableOpacity style={styles.recentTripButton} onPress={handlePress}>
+              <Text style={styles.recentTripButtonText}>Book Again</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.recentTripButton}>
-            <Text style={styles.recentTripButtonText}>Book Again</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
+        ))}
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   sectionTitle: {
@@ -39,7 +47,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-  
   recentTripRoute: {
     color: '#fff',
     fontWeight: 'bold',
@@ -56,8 +63,7 @@ const styles = StyleSheet.create({
   recentTripButtonText: {
     color: '#4a0e8f',
     fontWeight: 'bold',
-  }
-  
+  },
 });
 
 export default RecentTrips;
