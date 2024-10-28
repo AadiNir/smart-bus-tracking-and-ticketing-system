@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Modal, FlatList } from 'react-native';
 import { Bus, IndianRupee, MapPin, ChevronDown } from 'lucide-react-native';
 import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomDropdown = ({ options, selectedValue, onSelect, placeholder }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -48,7 +49,7 @@ const CustomDropdown = ({ options, selectedValue, onSelect, placeholder }) => {
 };
 
 const BusDetails = ({ route }) => {
-  const { busNumber } = route.params;
+  const { busNumber,userId } = route.params;
   const [busData, setBusData] = useState(null);
   const [fromLocation, setFromLocation] = useState('');
   const [toLocation, setToLocation] = useState('');
@@ -93,10 +94,11 @@ const BusDetails = ({ route }) => {
 
   const incrementTickets = () => setNumTickets(prev => prev + 1);
   const decrementTickets = () => setNumTickets(prev => (prev > 1 ? prev - 1 : 1));
-
+  const navigation = useNavigation();
   if (!busData) {
     return <View style={styles.container}><Text style={styles.loadingText}>Loading...</Text></View>;
   }
+
 
   return (
     <ScrollView style={styles.container}>
@@ -161,7 +163,7 @@ const BusDetails = ({ route }) => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.bookButton} onPress={() => alert('Booking feature to be implemented')}>
+      <TouchableOpacity style={styles.bookButton} onPress={() => navigation.navigate('Signup', { busNumberid:busNumber })}>
         <Text style={styles.bookButtonText}>Book Now</Text>
       </TouchableOpacity>
     </ScrollView>
