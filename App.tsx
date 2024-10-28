@@ -103,7 +103,7 @@ const App = () => {
         return Object.values(result).every((r) => r === PermissionsAndroid.RESULTS.GRANTED);
       } else {
         const result = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
-        console.log('Fine location permission result:', result);
+        console.log('Fine location permission result is:', result);
         return result === PermissionsAndroid.RESULTS.GRANTED;
       }
     }
