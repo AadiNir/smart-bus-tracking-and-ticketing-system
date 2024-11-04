@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native';
 import { Menu, Circle } from 'lucide-react-native';
 import SearchSection from './SearchSection';
 import AvailableBuses from './AvailableBuses';
@@ -10,11 +10,25 @@ import { useNavigation } from '@react-navigation/native';
 const Homescreen = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showAvailableBuses, setShowAvailableBuses] = useState(false);
+  const [buses, setBuses] = useState([]);
   const navigation = useNavigation();
 
-  const handleSearch = () => {
-    setShowAvailableBuses(true);
+  const handleSearch = (fetchedBuses) => {
+    setBuses(fetchedBuses);
+    setShowAvailableBuses(fetchedBuses.length > 0);
   };
+
+  const renderHeader = () => (
+    <>
+      <SearchSection onSearch={handleSearch} />
+      {showAvailableBuses ? (
+        <AvailableBuses buses={buses} />
+      ) : (
+        <Text style={styles.noBusesText}>No buses available. Try a different search.</Text>
+      )}
+      <RecentTrips />
+    </>
+  );
 
   return (
     <View style={styles.container}>
@@ -27,11 +41,13 @@ const Homescreen = () => {
         </View>
       </View>
 
-      <ScrollView style={styles.content}>
-        <SearchSection onSearch={handleSearch} />
-        {showAvailableBuses && <AvailableBuses />}
-        <RecentTrips />
-      </ScrollView>
+      <FlatList
+        data={[]} // We're using FlatList as a scrollable container
+        renderItem={null}
+        ListHeaderComponent={renderHeader}
+        style={styles.content}
+        keyboardShouldPersistTaps="handled"
+      />
 
       <MenuModal showMenu={showMenu} setShowMenu={setShowMenu} />
     </View>
@@ -61,6 +77,12 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 16,
+  },
+  noBusesText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 

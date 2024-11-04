@@ -1,13 +1,32 @@
 {
-  "project_info": {
-    "project_number": "676160589247",
-    "project_id": "project1-307dc",
-    "storage_bucket": "project1-307dc.appspot.com"
+"project_info": {
+    "project_number": "617799372421",
+    "project_id": "tryfirebase-7333a",
+    "storage_bucket": "tryfirebase-7333a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:676160589247:android:9d6d6577052d9b49e9a50a",
+        "mobilesdk_app_id": "1:617799372421:android:9d819fb2f1aea0756263ec",
+        "android_client_info": {
+          "package_name": "com.installtry1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJVOTbzpGaaPhFil5ZVZdjycaD9TPYyU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617799372421:android:bf8cbed7f79bf2d36263ec",
         "android_client_info": {
           "package_name": "com.newapp1"
         }
@@ -15,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBkjAUifDjaheLorA9H6d69GNlKYuV3pfI"
+          "current_key": "AIzaSyCJVOTbzpGaaPhFil5ZVZdjycaD9TPYyU4"
         }
       ],
       "services": {
@@ -25,5 +44,5 @@
       }
     }
   ],
-  "configuration_version": "1"
+  "configuration_version": "1"  
 }

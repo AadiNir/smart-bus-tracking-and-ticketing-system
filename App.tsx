@@ -7,16 +7,17 @@ import { BleManager } from 'react-native-ble-plx';
 import notifee, { EventType } from '@notifee/react-native';
 import { PermissionsAndroid, Platform, AppState } from 'react-native';
 import Tts from 'react-native-tts';
-
+import Login from './components/Login';
+import Signup from './components/Signup';
 const manager = new BleManager();
 const Stack = createStackNavigator();
 
 
 const busInfo = {
   'boAt Rockerz 255 Pro+-GFP': {
-    busNumber: '123',
-    from: 'City Center',
-    to: 'Main Station',
+    busNumber: '24A',
+    from: 'V House',
+    to: 'Anna Nagar West',
   },
 };
 
@@ -215,6 +216,16 @@ const App = () => {
         <Stack.Screen
           name="BusDetails"
           component={BusDetails}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="LoginDetails"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+          <Stack.Screen
+          name="Signup"
+          component={Signup}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
