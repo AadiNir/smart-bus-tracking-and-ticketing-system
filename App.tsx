@@ -22,10 +22,10 @@ const busInfo = {
 };
 
 const App = () => {
-  const [notificationTriggered, setNotificationTriggered] = useState(new Set()); // Track triggered notifications
+  const [notificationTriggered, setNotificationTriggered] = useState(new Set()); 
   const [appState, setAppState] = useState(AppState.currentState);
   const navigationRef = useRef();
-  const isScanning = useRef(false); // Track scanning status
+  const isScanning = useRef(false); 
 
   useEffect(() => {
     const setupBluetooth = async () => {
